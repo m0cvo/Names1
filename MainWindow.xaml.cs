@@ -63,12 +63,15 @@ namespace Names
 
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
-            //string names;
+            // Read file from hard drive
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             {
                 openFileDialog.Filter = "Text files (*.txt)|*.txt";   
             }
+
+            // and place contents of file into list
+
             if (openFileDialog.ShowDialog() == true)
             {
                 using Stream stream = openFileDialog.OpenFile();
