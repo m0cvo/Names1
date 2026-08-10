@@ -63,15 +63,20 @@ namespace Names
 
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
+            //string names;
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
             {
-                openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";   
+                openFileDialog.Filter = "Text files (*.txt)|*.txt";   
             }
             if (openFileDialog.ShowDialog() == true)
             {
-                foreach (var item in openFileDialog.FileName)
-                {// Process selected file
-                    lstNames.Items.Add(item);
+                using Stream stream = openFileDialog.OpenFile();
+                using StreamReader reader = new StreamReader(stream);
+                string input;
+                while ((input = reader.ReadLine()) != null)
+                {
+                    lstNames.Items.Add(input);
                 }
             }
         }
